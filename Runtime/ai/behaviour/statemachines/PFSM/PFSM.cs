@@ -77,7 +77,7 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
         public PreemptiveState<TEntity> PreemptiveState { get; private set; }
 
         /// <summary>
-        /// Creates a new finite state machine.
+        /// Creates a new preemptive finite state machine.
         /// </summary>
         /// <param name="owner">The entity controlled by the FSM.</param>
         /// <param name="currentState">The initial active state.</param>
@@ -131,7 +131,7 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
         }
 
         /// <summary>
-        /// Transitions the FSM to a new state.
+        /// Transitions the PFSM to a new current state.
         /// </summary>
         /// <param name="newState">The state to transition to.</param>
         /// <param name="allowSameState">
@@ -155,7 +155,6 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
             CurrentState.Enter(this, Owner);
         }
 
-
         /// <summary>
         /// Sets or replaces the preemptive state.
         /// </summary>
@@ -174,7 +173,7 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
         }
 
         /// <summary>
-        /// Reverts the FSM to the previously active state.
+        /// Reverts the PFSM to the previously active state.
         /// </summary>
         /// <param name="allowSameState">
         /// If <c>true</c>, allows re-entering the same state if the previous
@@ -186,7 +185,7 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
         }
 
         /// <summary>
-        /// Changes the owner entity controlled by this FSM.
+        /// Changes the owner entity controlled by this PFSM.
         /// </summary>
         /// <param name="newOwner">The new owner entity.</param>
         /// <param name="reenterCurrentState">

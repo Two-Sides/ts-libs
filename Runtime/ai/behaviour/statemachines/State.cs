@@ -1,4 +1,4 @@
-﻿namespace TwoSides.AI.Behaviour.StateMachines.PFSM
+﻿namespace TwoSides.AI.Behaviour.StateMachines
 {
     /// <summary>
     /// Base class for all states used by a finite state machine (FSM).
@@ -16,8 +16,7 @@
         /// </summary>
         /// <param name="fsm">The finite state machine that owns this state.</param>
         /// <param name="entity">The entity controlled by the state machine.</param>
-        public virtual void Enter(PFSM<TEntity> fsm, TEntity entity) { }
-
+        public virtual void Enter(IStateMachine<TEntity> fsm, TEntity entity) { }
 
         /// <summary>
         /// Called every update cycle while this state is the current active state.
@@ -25,7 +24,7 @@
         /// </summary>
         /// <param name="fsm">The finite state machine that owns this state.</param>
         /// <param name="entity">The entity controlled by the state machine.</param>
-        public virtual void Execute(PFSM<TEntity> fsm, TEntity entity) { }
+        public virtual void Execute(IStateMachine<TEntity> fsm, TEntity entity) { }
 
         /// <summary>
         /// Called once when the FSM exits this state.
@@ -34,7 +33,7 @@
         /// </summary>
         /// <param name="fsm">The finite state machine that owns this state.</param>
         /// <param name="entity">The entity controlled by the state machine.</param>
-        public virtual void Exit(PFSM<TEntity> fsm, TEntity entity) { }
+        public virtual void Exit(IStateMachine<TEntity> fsm, TEntity entity) { }
     }
 }
 

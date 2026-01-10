@@ -10,7 +10,7 @@ namespace TwoSides.AI.Behaviour.StateMachines.PFSM
     /// <typeparam name="TEntity">
     /// The type of the entity controlled by this state machine.
     /// </typeparam>
-    public class PFSM<TEntity>
+    public class PFSM<TEntity> : IStateMachine<TEntity>
     {
         /// <summary>
         /// Equality comparer used to determine whether two states should be considered the same.

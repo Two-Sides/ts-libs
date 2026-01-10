@@ -6,10 +6,10 @@ public interface IActivatable
     /// <summary>
     /// Activates the element.
     /// </summary>
-    UniTask ActivateAsync(CancellationToken cancellationToken);
+    public UniTask ActivateAsync(CancellationToken cancellationToken);
 
     /// <summary>
     /// Deactivates the element.
     /// </summary>
-    UniTask DeactivateAsync(CancellationToken cancellationToken);
+    public UniTask DeactivateAsync(CancellationToken cancellationToken);
 }

@@ -2,5 +2,5 @@ using TwoSides.AI.Behaviour.StateMachines;
 
 public class HierarchicalState : State
 {
-    public SubStateMachine Ancestor { get; set; }
+    public HierarchicalState Ancestor { get; set; }
 }

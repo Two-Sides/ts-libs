@@ -57,7 +57,7 @@ namespace TwoSides.Utility.Patterns.Scene.Loading
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                Debug.Logging.Logger.LogException(ex, this);
             }
             finally
             {

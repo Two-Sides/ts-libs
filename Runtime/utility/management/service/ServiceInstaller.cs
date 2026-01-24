@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TSLib.Utility.Debug.Logging;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ namespace TSLib.Utility.Management.Service
         public void Install()
         {
             if (_services?.Length == 0)
-                TSLogger.LogWarning("(empty) No services registeres in Service Installer.");
+                TSLogger.LogWarning("(empty) No services registered in Service Installer.");
 
             for (int i = 0; i < _services.Length; i++)
             {

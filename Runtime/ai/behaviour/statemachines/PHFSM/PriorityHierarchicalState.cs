@@ -24,6 +24,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
             {
                 var transition = Transitions[i];
 
+                if (stateMachine.IsSameState(transition.NextState, this)) continue;
                 if (!transition.ConditionMet()) continue;
 
                 stateMachine.TransitionTo(transition.NextState);

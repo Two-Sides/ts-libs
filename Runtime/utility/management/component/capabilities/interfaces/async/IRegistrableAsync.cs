@@ -9,13 +9,13 @@ namespace TSLib.Utility.Management.Component.Capabilities.Async
         /// Registers the component with the
         /// relevant services.
         /// </summary>
-        public UniTask Register(CancellationToken cancellationToken);
+        public UniTask RegisterAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Removes the component from the
         /// services where it was registered.
         /// </summary>
-        public UniTask Unregister(CancellationToken cancellationToken);
+        public UniTask UnregisterAsync(CancellationToken cancellationToken);
     }
 }
 

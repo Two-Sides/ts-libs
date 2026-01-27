@@ -8,6 +8,6 @@ namespace TSLib.Utility.Management.Component.Capabilities.Async
         /// <summary>
         /// Initializes the component.
         /// </summary>
-        public UniTask Initialize(CancellationToken cancellationToken);
+        public UniTask InitializeAsync(CancellationToken cancellationToken);
     }
 }

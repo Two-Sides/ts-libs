@@ -10,6 +10,6 @@ namespace TSLib.Utility.Management.Component.Capabilities
         /// <summary>
         /// Deactivates the element.
         /// </summary>
-        public void DeactivateAsync();
+        public void Deactivate();
     }
 }

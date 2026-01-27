@@ -8,6 +8,6 @@ namespace TSLib.Utility.Management.Component.Capabilities
         public virtual void Configure() { }
         public virtual void Activate() { }
         public virtual void Deconfigure() { }
-        public virtual void DeactivateAsync() { }
+        public virtual void Deactivate() { }
     }
 }

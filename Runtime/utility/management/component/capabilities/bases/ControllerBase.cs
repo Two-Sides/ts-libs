@@ -23,6 +23,19 @@ namespace TSLib.Utility.Management.Component.Capabilities
             }
         }
 
+        public override void Bind()
+        {
+            if (Components == null)
+                throw new ArgumentNullException(nameof(Components));
+
+            for (int i = 0; i < Components.Length; i++)
+            {
+                var component = Components[i];
+                if (component == null) continue;
+                component.Bind();
+            }
+        }
+
         public override void Configure()
         {
             if (Components == null)

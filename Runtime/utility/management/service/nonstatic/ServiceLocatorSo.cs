@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace TSLib.Utility.Management.Service.NonStatic
 {
+    [CreateAssetMenu(fileName = "ServiceLocator", menuName = "ServiceLocator")]
     public class ServiceLocatorSo : ScriptableObject
     {
         [SerializeField] private ServiceBaseSo[] services;

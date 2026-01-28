@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using TSLib.Utility.Management.Service;
 using TSLib.Utility.Patterns.Scene.Loading;
+using UnityEngine;
 
 namespace TSLib.Utility.Management.Scene.Loading
 {
@@ -26,6 +27,8 @@ namespace TSLib.Utility.Management.Scene.Loading
     /// </summary>
     public abstract class SceneInitializerBase : SceneEntryBase
     {
+        [SerializeField] protected ServiceLocatorSo serviceLocator;
+
         /// <summary>
         /// Executes the complete scene initialization workflow in a strict, sequential order.
         /// This method is called automatically by the base class.
@@ -35,14 +38,14 @@ namespace TSLib.Utility.Management.Scene.Loading
         /// </param>
         protected sealed override async UniTask Execute(CancellationToken ct)
         {
-            //ServiceLocator.SetActive(false);
+            serviceLocator.SetActive(false);
 
             await PreconfigureEnvironmentAsync(ct);
             await InstantiateAsync(ct);
             await RegisterAsync(ct);
             await InitializeAsync(ct);
 
-            //ServiceLocator.SetActive(true);
+            serviceLocator.SetActive(true);
 
             await BindingAsync(ct);
             await ConfigureAsync(ct);

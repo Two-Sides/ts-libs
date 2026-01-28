@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace TSLib.Utility.Management.Service.NonStatic
+namespace TSLib.Utility.Management.Service
 {
     [CreateAssetMenu(fileName = "ServiceLocator", menuName = "ServiceLocator")]
     public class ServiceLocatorSo : ScriptableObject

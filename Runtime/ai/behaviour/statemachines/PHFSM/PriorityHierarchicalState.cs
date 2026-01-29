@@ -10,8 +10,8 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
         protected bool enterCondition = false;
         protected bool exitCondition = false;
 
-        public abstract int Priority { get; }
-        public abstract bool IsInterruptible { get; }
+        public int Priority { get; set; }
+        public bool IsInterruptible { get; set; }
 
         public List<Transition> Transitions { get; } = new();
 

@@ -10,24 +10,24 @@ namespace TSLib.Utility.Patterns.Scene.Loading
     {
         [SerializeField] private SceneChannelSo onSceneLoaded;
 
-        private AppCtx _appCtx;
-        private SceneCtx _sceneCtx;
+        protected AppCtx AppCtx;
+        protected SceneCtx SceneCtx;
 
         public async UniTask LoadAsync(AppCtx appCtx, CancellationToken ct)
         {
-            _appCtx = appCtx;
-            _sceneCtx = new SceneCtx();
+            AppCtx = appCtx;
+            SceneCtx = new SceneCtx();
 
-            _sceneCtx.SetActive(false);
+            SceneCtx.SetActive(false);
 
             await PreconfigureSceneAsync(ct);
             await InstantiateAsync(ct);
             await InitializeAsync(ct);
-            await RegisterAsync(_sceneCtx, _appCtx, ct);
+            await RegisterAsync(SceneCtx, AppCtx, ct);
 
-            _sceneCtx.SetActive(true);
+            SceneCtx.SetActive(true);
 
-            await BindingAsync(_sceneCtx, _appCtx, ct);
+            await BindingAsync(SceneCtx, AppCtx, ct);
             await ConfigureAsync(ct);
             await ExecuteCustomOperationsAsync(ct);
 

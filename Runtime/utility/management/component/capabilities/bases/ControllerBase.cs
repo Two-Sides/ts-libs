@@ -1,14 +1,15 @@
 using System;
+using TSLib.Utility.Patterns.Scene.Contexts;
 using UnityEngine;
 
 namespace TSLib.Utility.Management.Component.Capabilities
 {
-    public abstract class ControllerBase : ComponentBase
+    public abstract class ControllerBase : ComponentBase, IRegistrable
     {
         [SerializeField] protected ComponentBase[] Components;
 
-        public virtual void Register() { }
-        public virtual void Unregister() { }
+        public virtual void Register(SceneCtx sceneCtx, AppCtx appCtx) { }
+        public virtual void Unregister(SceneCtx sceneCtx, AppCtx appCtx) { }
 
         public override void Initialize()
         {
@@ -23,7 +24,7 @@ namespace TSLib.Utility.Management.Component.Capabilities
             }
         }
 
-        public override void Bind()
+        public override void Bind(SceneCtx sceneCtx, AppCtx appCtx)
         {
             if (Components == null)
                 throw new ArgumentNullException(nameof(Components));
@@ -32,7 +33,7 @@ namespace TSLib.Utility.Management.Component.Capabilities
             {
                 var component = Components[i];
                 if (component == null) continue;
-                component.Bind();
+                component.Bind(sceneCtx, appCtx);
             }
         }
 

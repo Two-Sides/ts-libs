@@ -13,7 +13,7 @@ namespace TSLib.Utility.Patterns.Scene.Loading
         private AppCtx _appCtx;
         private SceneCtx _sceneCtx;
 
-        protected async UniTask LoadAsync(AppCtx appCtx, CancellationToken ct)
+        public async UniTask LoadAsync(AppCtx appCtx, CancellationToken ct)
         {
             _appCtx = appCtx;
             _sceneCtx = new SceneCtx();

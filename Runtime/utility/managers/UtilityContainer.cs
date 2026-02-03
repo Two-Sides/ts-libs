@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSLib.Utility.Management.Managers
 {
-    public class UtilityContainer
+    public abstract class UtilityContainerBase
     {
         private readonly Dictionary<Type, IUtility> _utilities = new();
 

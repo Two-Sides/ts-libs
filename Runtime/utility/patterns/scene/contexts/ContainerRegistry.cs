@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace TSLib.Utility.Patterns.Scene.Contexts
 {
-    public class CtxContainer<T>
+    public class ContainerRegistry<T>
     {
-        private readonly Dictionary<Type, T> _registry = new();
+        private readonly Dictionary<Type, T> _containers = new();
 
         public bool Active { get; private set; } = true;
 
         public void SetActive(bool active) => Active = active;
 
-        public void Register(T ctx)
+        public void Register(T container)
         {
-            if (ctx == null)
-                throw new ArgumentNullException(nameof(ctx));
+            if (container == null)
+                throw new ArgumentNullException(nameof(container));
 
-            var type = ctx.GetType();
+            var type = container.GetType();
 
-            if (_registry.ContainsKey(type))
+            if (_containers.ContainsKey(type))
             {
                 throw new InvalidOperationException(
                     $"A container of type '{type.FullName}' is already registered. " +
@@ -26,20 +26,20 @@ namespace TSLib.Utility.Patterns.Scene.Contexts
                 );
             }
 
-            _registry[type] = ctx;
+            _containers[type] = container;
         }
 
         public void Unregister<Type>()
         {
-            _registry.Remove(typeof(Type));
+            _containers.Remove(typeof(Type));
         }
 
         public Type Get<Type>() where Type : T
         {
             if (!Active) throw new InvalidOperationException(
-                "(disabled) The context is currently disabled. Call SetActive(true) before attempting to use it.");
+                "(disabled) The container getter is currently disabled. Call SetActive(true) before attempting to use it.");
 
-            if (_registry.TryGetValue(typeof(Type), out var service))
+            if (_containers.TryGetValue(typeof(Type), out var service))
                 return (Type)service;
 
             return default;
@@ -47,7 +47,7 @@ namespace TSLib.Utility.Patterns.Scene.Contexts
 
         public void Clear()
         {
-            _registry.Clear();
+            _containers.Clear();
         }
     }
 }

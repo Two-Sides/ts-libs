@@ -25,7 +25,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
         private IComparer<Transition> _comparer;
         private Transition _selfTransition;
 
-        public PHS(PHSData_So data, Transition selfTransition, IComparer<Transition> comparer, List<Transition> transitions)
+        protected PHS(PHSData_So data, Transition selfTransition, IComparer<Transition> comparer, List<Transition> transitions)
         {
             SetData(data, selfTransition, comparer);
 

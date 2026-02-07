@@ -8,7 +8,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
     public abstract class PHS : HierarchicalState
     {
         public bool EnterCondition { get; private set; } = false;
-        protected bool exitCondition = false;
+        public bool ExitCondition { get; private set; } = false;
 
         public int Priority { get; set; }
         public bool IsInterruptible { get; set; }
@@ -53,8 +53,8 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
 
             if (OnEnter != null) OnEnter.TriggerEvent();
 
-            if (OnEnterCondition != null) OnEnterCondition.Subscribe(SetEnterEnabled);
-            if (OnExitCondition != null) OnExitCondition.Subscribe(SetExitEnabled);
+            if (OnEnterCondition != null) OnEnterCondition.Subscribe(EnableEnter);
+            if (OnExitCondition != null) OnExitCondition.Subscribe(EnableExit);
 
             EnterLogic();
         }
@@ -64,7 +64,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
             ExecuteLogic(deltaTime);
 
             // Transition checker
-            if (!exitCondition && !IsInterruptible) return;
+            if (!ExitCondition && !IsInterruptible) return;
 
             for (int i = 0; i < Transitions.Count; i++)
             {
@@ -74,7 +74,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
                 if (!nextTransition.EnterCondition()) continue;
                 if (stateMachine.IsSameState(nextTransition.NextState, this)) continue;
 
-                bool isInterruption = !exitCondition && IsInterruptible;
+                bool isInterruption = !ExitCondition && IsInterruptible;
                 if (isInterruption && SelfTransition != GetHighestPriority(SelfTransition, nextTransition))
                     break;
 
@@ -86,14 +86,14 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
 
         public sealed override void Exit()
         {
-            exitCondition = false;
+            ExitCondition = false;
 
             ExitLogic();
 
             if (OnExit != null) OnExit.TriggerEvent();
 
-            if (OnEnterCondition != null) OnEnterCondition.Unsubscribe(SetEnterEnabled);
-            if (OnExitCondition != null) OnExitCondition.Unsubscribe(SetExitEnabled);
+            if (OnEnterCondition != null) OnEnterCondition.Unsubscribe(EnableEnter);
+            if (OnExitCondition != null) OnExitCondition.Unsubscribe(EnableExit);
         }
 
         public void SetTransitions(List<Transition> transitions)
@@ -110,8 +110,10 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
         protected virtual void ExecuteLogic(float deltaTime) { }
         protected virtual void ExitLogic() { }
 
-        private void SetEnterEnabled() => EnterCondition = true;
-        private void SetExitEnabled() => exitCondition = true;
+        protected void EnableEnter() => EnterCondition = true;
+        protected void EnableExit() => ExitCondition = true;
+        protected void DisableEnter() => EnterCondition = false;
+        protected void DisableExit() => ExitCondition = false;
 
         private Transition GetHighestPriority(Transition t1, Transition t2)
         {

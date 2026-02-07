@@ -75,7 +75,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
                 if (stateMachine.IsSameState(nextTransition.NextState, this)) continue;
 
                 bool isInterruption = !ExitCondition && IsInterruptible;
-                if (isInterruption && SelfTransition != GetHighestPriority(SelfTransition, nextTransition))
+                if (isInterruption && SelfTransition == GetHighestPriority(SelfTransition, nextTransition))
                     break;
 
                 stateMachine.TransitionTo(nextTransition.NextState);

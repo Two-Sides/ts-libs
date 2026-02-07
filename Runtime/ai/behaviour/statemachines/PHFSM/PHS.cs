@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TSLib.AI.Behaviour.StateMachines.HFSM;
+using TSLib.Utility.Debug.Logging;
 using TSLib.Utility.Patterns.EventChannels.Primitive;
 
 namespace TSLib.AI.Behaviour.StateMachines.PHFSM
@@ -110,10 +111,10 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
         protected virtual void ExecuteLogic(float deltaTime) { }
         protected virtual void ExitLogic() { }
 
-        protected void EnableEnter() => EnterCondition = true;
-        protected void EnableExit() => ExitCondition = true;
-        protected void DisableEnter() => EnterCondition = false;
-        protected void DisableExit() => ExitCondition = false;
+        protected virtual void EnableEnter() => EnterCondition = true;
+        protected virtual void EnableExit() => ExitCondition = true;
+        protected virtual void DisableEnter() => EnterCondition = false;
+        protected virtual void DisableExit() => ExitCondition = false;
 
         private PHS GetHighestPriority(Transition t1, Transition t2)
         {

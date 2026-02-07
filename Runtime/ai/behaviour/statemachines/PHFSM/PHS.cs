@@ -75,7 +75,7 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
                 if (stateMachine.IsSameState(nextTransition.NextState, this)) continue;
 
                 bool isInterruption = !ExitCondition && IsInterruptible;
-                if (isInterruption && SelfTransition == GetHighestPriority(SelfTransition, nextTransition))
+                if (isInterruption && stateMachine.IsSameState(GetHighestPriority(SelfTransition, nextTransition), this))
                     break;
 
                 stateMachine.TransitionTo(nextTransition.NextState);
@@ -115,10 +115,10 @@ namespace TSLib.AI.Behaviour.StateMachines.PHFSM
         protected void DisableEnter() => EnterCondition = false;
         protected void DisableExit() => ExitCondition = false;
 
-        private Transition GetHighestPriority(Transition t1, Transition t2)
+        private PHS GetHighestPriority(Transition t1, Transition t2)
         {
-            if (_comparer.Compare(t1, t2) <= 0) return t1;
-            return t2;
+            if (_comparer.Compare(t1, t2) <= 0) return t1.NextState;
+            return t2.NextState;
         }
     }
 }

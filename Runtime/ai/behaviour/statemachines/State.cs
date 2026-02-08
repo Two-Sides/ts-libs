@@ -1,4 +1,6 @@
-﻿namespace TSLib.AI.Behaviour.StateMachines
+﻿using TSLib.Utility.Patterns.Scene.Contexts;
+
+namespace TSLib.AI.Behaviour.StateMachines
 {
     /// <summary>
     /// Base class for all states used by a finite state machine (FSM).
@@ -6,6 +8,9 @@
     /// </summary>
     public abstract class State
     {
+        public SceneCtx SceneCtx { private get; set; }
+        public AppCtx AppCtx { private get; set; }
+
         /// <summary>
         /// Called once when the FSM enters this state.
         /// Use this method to initialize state-specific data,

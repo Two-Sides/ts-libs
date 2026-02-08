@@ -14,7 +14,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="screenPos">Screen position in pixels.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>World space coordinates.</returns>
-        public static Vector2 FromScreenToWorld(Vector2 screenPos, Camera worldCamera)
+        public static Vector2 ScreenToWorld(Vector2 screenPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));
@@ -28,7 +28,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="worldPos">World space position.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>Screen coordinates in pixels.</returns>
-        public static Vector2 FromWorldToScreen(Vector2 worldPos, Camera worldCamera)
+        public static Vector2 WorldToScreen(Vector2 worldPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));
@@ -42,7 +42,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="screenPos">Screen position in pixels.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>Viewport coordinates in normalized space.</returns>
-        public static Vector2 FromScreenToViewport(Vector2 screenPos, Camera worldCamera)
+        public static Vector2 ScreenToViewport(Vector2 screenPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));
@@ -56,7 +56,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="worldPos">World space position.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>Viewport coordinates in normalized space.</returns>
-        public static Vector2 FromWorldToViewport(Vector2 worldPos, Camera worldCamera)
+        public static Vector2 WorldToViewport(Vector2 worldPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));
@@ -70,7 +70,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="viewportPos">Viewport coordinates in normalized space.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>World space coordinates.</returns>
-        public static Vector2 FromViewportToWorld(Vector2 viewportPos, Camera worldCamera)
+        public static Vector2 ViewportToWorld(Vector2 viewportPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));
@@ -84,7 +84,7 @@ namespace TSLib.Utility.Coords2D
         /// <param name="viewportPos">Viewport coordinates in normalized space.</param>
         /// <param name="worldCamera">Camera used for the conversion.</param>
         /// <returns>Screen coordinates in pixels.</returns>
-        public static Vector2 FromViewportToScreen(Vector2 viewportPos, Camera worldCamera)
+        public static Vector2 ViewportToScreen(Vector2 viewportPos, Camera worldCamera)
         {
             if (worldCamera == null)
                 throw new ArgumentNullException(nameof(worldCamera));

@@ -12,5 +12,8 @@ namespace TSLib.Utility.Management.Component.Capabilities
         public virtual void Configure() { }
         public virtual void Activate() { }
         public virtual void Deactivate() { }
+        protected virtual void Destroy() { }
+
+        protected virtual void OnDestroy() => Destroy();
     }
 }

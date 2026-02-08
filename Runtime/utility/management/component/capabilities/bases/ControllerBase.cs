@@ -9,7 +9,9 @@ namespace TSLib.Utility.Management.Component.Capabilities
         [SerializeField] protected ComponentBase[] Components;
 
         public virtual void Register(SceneCtx sceneCtx, AppCtx appCtx) { }
-        public virtual void Unregister(SceneCtx sceneCtx, AppCtx appCtx) { }
+        protected virtual void Unregister() { }
+        protected virtual void Destroy() { }
+
 
         public override void Initialize()
         {
@@ -74,6 +76,12 @@ namespace TSLib.Utility.Management.Component.Capabilities
                 if (component == null) continue;
                 component.Deactivate();
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            Unregister();
+            Destroy();
         }
     }
 }
